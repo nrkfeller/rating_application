@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     @courses = Course.all
+    @reviews = Review.where(course_id: @course.id).order("created_at DESC")
   end
 
   def new
