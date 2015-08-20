@@ -1,0 +1,23 @@
+<div class='sidebar'>
+    <% if user_signed_in? %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+      <%= link_to "Sign Up", new_user_registration_path %>
+    <% end %>
+    <div class='form-inputs'>
+        <%= form_tag courses_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :code => nil %>
+          </p>
+        <% end %>
+    </div>
+    <ul>
+      <% @courses.each do |course| %>
+        <tr>
+          <li><td><%= link_to course.code, course_path(course) %></td></li>
+        </tr>
+      <% end %>
+    </ul>
+</div>

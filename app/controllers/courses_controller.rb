@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @courses = Course.all
   end
 
   def new
