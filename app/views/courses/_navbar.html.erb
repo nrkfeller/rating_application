@@ -1,21 +1,31 @@
 <div class='sidebar'>
+  
     <% if user_signed_in? %>
       <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to 'Sign In', new_user_session_path %>
       <%= link_to "Sign Up", new_user_registration_path %>
     <% end %>
-    <%= form_tag courses_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
-        <p>
-          <%= text_field_tag :search, params[:search], class: "form-control" %>
-          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
-        </p>
+    <div id="search">
+      <%= form_tag courses_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+          <p>
+            <%= text_field_tag :search, params[:search], class: "form-control" %>
+            <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+          </p>
       <% end %>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <ul>
       <% @courses.each do |course| %>
-        <tr>
-          <li><td><%= link_to course.code, course_path(course) %></td></li>
-        </tr>
+          <div class="thumbnail">
+              <td><%= course.code %></td>
+              <td><%= course.name %></td>
+              <td><%= link_to 'Show', course %></td>
+          </div>
       <% end %>
     </ul>
+    <%= will_paginate @courses %>
 </div>

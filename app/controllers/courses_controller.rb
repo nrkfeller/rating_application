@@ -1,20 +1,23 @@
 class CoursesController < ApplicationController
+  require 'will_paginate/array' 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :search_course, only: [:index, :search, :show]
+  
   
   def search
-    if params[:search].present?
-      @courses = Course.search(params[:search])
-    else
-      @courses = Course.all
-    end
+    
   end
 
   def index
-    @courses = Course.all
+    @reviews = Review.where(course_id: @course)
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
   def show
-    @courses = Course.all
     @reviews = Review.where(course_id: @course.id).order("created_at DESC")
     if @reviews.blank?
       @avg_review = 0
@@ -76,4 +79,13 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:code, :name, :description)
     end
+    
+    def search_course
+      if params[:search].present?
+        @courses = Course.search(params[:search], page: params[:page], per_page: 3)
+      else
+        @courses = Course.paginate(page: params[:page], per_page: 3)
+      end
+    end
+    
 end
