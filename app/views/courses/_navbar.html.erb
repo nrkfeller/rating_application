@@ -21,8 +21,13 @@
     <ul>
       <% @courses.each do |course| %>
           <div class="thumbnail">
+              <% y = 0.0 %>
+              <% course.reviews.each{ |x| y = y + x.rating} %>
+              <td><%= y / course.reviews.count %></td>
               <td><%= course.code %></td>
               <td><%= course.name %></td>
+              <br>
+              <td><%= course.reviews.count %></td> reviews
               <td><%= link_to 'Show', course %></td>
           </div>
       <% end %>
