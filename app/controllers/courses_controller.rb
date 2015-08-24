@@ -15,6 +15,16 @@ class CoursesController < ApplicationController
     else
       @avg_review = @reviews.average(:rating).round(2)
     end
+    if @reviews.blank?
+      @avg_review2 = 0
+    else
+      @avg_review2 = @reviews.average(:rating2).round(2)
+    end
+    if @reviews.blank?
+      @avg_review3 = 0
+    else
+      @avg_review3 = @reviews.average(:rating3).round(2)
+    end
   end
 
   def show
@@ -23,6 +33,16 @@ class CoursesController < ApplicationController
       @avg_review = 0
     else
       @avg_review = @reviews.average(:rating).round(2)
+    end
+    if @reviews.blank?
+      @avg_review2 = 0
+    else
+      @avg_review2 = @reviews.average(:rating2).round(2)
+    end
+    if @reviews.blank?
+      @avg_review3 = 0
+    else
+      @avg_review3 = @reviews.average(:rating3).round(2)
     end
   end
 

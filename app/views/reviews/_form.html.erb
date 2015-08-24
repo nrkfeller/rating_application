@@ -11,8 +11,17 @@
     </div>
   <% end %>
 
+  Useful
   <div class="field">
     <div id="star-rating"></div>
+  </div>
+  Easy
+  <div class="field">
+    <div id="star-rating2"></div>
+  </div>
+  Fun
+  <div class="field">
+    <div id="star-rating3"></div>
   </div>
   <div class="field">
     <%= f.label :comment %><br>
@@ -27,5 +36,17 @@
   $('#star-rating').raty({
     path: '/assets/',
     scoreName: 'review[rating]'
+  });
+</script>
+<script>
+  $('#star-rating2').raty({
+    path: '/assets/',
+    scoreName: 'review[rating2]'
+  });
+</script>
+<script>
+  $('#star-rating3').raty({
+    path: '/assets/',
+    scoreName: 'review[rating3]'
   });
 </script>

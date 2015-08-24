@@ -18,11 +18,11 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.course_id = @course.id
 
-    if @review.save
-      redirect_to @course
-    else
-      redirect_to 'new'
-    end
+      if @review.save
+        redirect_to @course
+      else
+        redirect_to 'new'
+      end
   end
 
   # PATCH/PUT /reviews/1
@@ -58,6 +58,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.require(:review).permit(:rating, :rating2, :rating3, :comment)
     end
 end

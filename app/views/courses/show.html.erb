@@ -13,6 +13,10 @@
   </p>
   <div class="star-rating" data-score= <%= @avg_review %> ></div> data-score= <%= @avg_review %>
         <em><%= "#{@reviews.length} reviews" %></em>
+  <div class="star-rating" data-score= <%= @avg_review2 %> ></div> data-score= <%= @avg_review2 %>
+        <em><%= "#{@reviews.length} reviews" %></em>
+  <div class="star-rating" data-score= <%= @avg_review3 %> ></div> data-score= <%= @avg_review3 %>
+        <em><%= "#{@reviews.length} reviews" %></em>
   <p>
     <strong>Description:</strong>
     <%= @course.description %>
@@ -28,6 +32,8 @@
         <% @reviews.each do |review| %>
             <div class="reviews">
               <div class="star-rating" data-score= <%= review.rating %> ><%= review.rating %></div>
+              <div class="star-rating" data-score= <%= review.rating2 %> ><%= review.rating2 %></div>
+              <div class="star-rating" data-score= <%= review.rating3 %> ><%= review.rating3 %></div>
               <p><%= review.comment %></p>
             </div>
         <% end %>
