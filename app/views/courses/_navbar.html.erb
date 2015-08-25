@@ -1,5 +1,12 @@
 <div class='sidebar'>
   <div id="logo"><%= link_to 'Home Page', root_path %></div>
+  <hr/>
+  <ul class="nav nav-pills">
+    <li role="presentation"><a href="#"><i class='fa fa-facebook'></i></a></li>
+    <li role="presentation"><a href="#"><i class='fa fa-twitter'></i></a></li>
+    <li role="presentation"><a href="#"><i class='fa fa-instagram'></i></a></li>
+    <li role="presentation"><a href="#"><i class='fa fa-google-plus'></i></a></li>
+  </ul>
     <% if user_signed_in? %>
       <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <% else %>
@@ -7,7 +14,7 @@
       <%= link_to "Sign Up", new_user_registration_path %>
     <% end %>
     <div id="search">
-      <%= form_tag courses_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+      <%= form_tag courses_path, method: :get, class: "navbar-form", role: "search" do %>
           <p>
             <%= text_field_tag :search, params[:search], class: "form-control" %>
             <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
@@ -20,10 +27,10 @@
     <br>
     <ul>
       <% @courses.each do |course| %>
-          <div class="thumbnail">
+          <div class="">
               <% y = 0.0 %>
               <% course.reviews.each{ |x| y = y + x.rating} %>
-              <td><%= y / course.reviews.count %></td>
+              <td><%= (y / course.reviews.count).round(2) %></td>
               <td><%= course.code %></td>
               <td><%= course.name %></td>
               <br>
